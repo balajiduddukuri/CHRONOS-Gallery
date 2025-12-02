@@ -11,7 +11,8 @@ export const RolexStyle: React.FC<WatchProps> = ({ time, timezone }) => {
   // Diver bezel state - unidirectional rotation
   const [bezelOffset, setBezelOffset] = useState(0);
 
-  const handleBezelClick = () => {
+  const handleBezelClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     // Rotate counter-clockwise by 2.5 minutes (15 degrees) per click
     setBezelOffset(prev => prev - 15);
   };
@@ -19,7 +20,7 @@ export const RolexStyle: React.FC<WatchProps> = ({ time, timezone }) => {
   const dateNum = new Intl.DateTimeFormat('en-US', { day: 'numeric', timeZone: timezone }).format(time);
 
   return (
-    <div className="w-full h-full rounded-full bg-silver-200 shadow-2xl relative flex items-center justify-center p-0.5 ring-4 ring-silver-300">
+    <div className="w-full h-full rounded-full bg-silver-200 shadow-2xl relative flex items-center justify-center p-0.5 ring-4 ring-silver-300 transition-transform duration-700 ease-in-out group-hover:rotate-[8deg] group-hover:scale-[1.02]">
       {/* Case Lugs visual simulation (subtle gradients on outer ring) */}
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-silver-100 to-silver-400"></div>
 
