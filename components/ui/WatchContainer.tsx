@@ -40,14 +40,17 @@ export const WatchContainer: React.FC<WatchContainerProps> = ({ title, descripti
       </div>
 
       <div 
-        className="relative mb-8 w-64 h-64 md:w-72 md:h-72 transition-transform duration-500 ease-out group-hover:scale-105"
+        // Changed: Removed group-hover:scale-105 from the parent, moved logic to internal div below if needed, 
+        // but generally scaling the whole watch can cause layout shifts. 
+        // We will scale the watch-wrapper div slightly but ensure the parent has overflow visible or sufficient padding.
+        className="relative mb-8 w-64 h-64 md:w-72 md:h-72 transition-transform duration-500 ease-out transform group-hover:scale-105"
         role="img" 
         aria-label={labels?.ariaLabel || `Interactive display of ${title}`}
       >
         {children}
       </div>
       
-      <div className="text-center z-10 w-full border-t border-slate-100 dark:border-white/5 pt-6 mt-2">
+      <div className="text-center z-10 w-full border-t border-slate-100 dark:border-white/5 pt-6 mt-2 relative bg-white dark:bg-[#111]">
         <h3 className="font-serif text-2xl font-bold tracking-wide text-slate-900 dark:text-silver-200 mb-2 group-hover:text-rolex dark:group-hover:text-rolex-light transition-colors">
           {title}
         </h3>

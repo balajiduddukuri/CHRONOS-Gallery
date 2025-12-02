@@ -19,11 +19,20 @@ export const LuxuryAnalog: React.FC<WatchProps> = ({ time, timezone }) => {
       {/* Gold Bezel */}
       <div className="w-full h-full rounded-full bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 p-[12px] shadow-lg">
         
-        {/* Face */}
-        <div className="w-full h-full rounded-full bg-surface relative overflow-hidden shadow-inner">
+        {/* Face with Sunburst Effect */}
+        <div className="w-full h-full rounded-full relative overflow-hidden shadow-inner">
            
-           {/* Sunburst Gradient */}
-           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(40,40,40,1),_rgba(5,5,5,1))]" />
+           {/* Sunburst Gradient: Conic gradient for the radial brushing effect, mixed with radial for depth */}
+           <div 
+             className="absolute inset-0" 
+             style={{
+               background: `
+                 radial-gradient(circle at center, rgba(40,40,40,0.8), rgba(0,0,0,1)),
+                 conic-gradient(from 0deg, #222 0deg, #444 45deg, #222 90deg, #444 135deg, #222 180deg, #444 225deg, #222 270deg, #444 315deg, #222 360deg)
+               `,
+               backgroundBlendMode: 'multiply'
+             }}
+           />
 
            {/* Minute Markers */}
            {Array.from({ length: 60 }).map((_, i) => (
