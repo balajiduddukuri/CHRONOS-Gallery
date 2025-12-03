@@ -157,16 +157,21 @@ export const RolexStyle: React.FC<WatchProps> = ({ time, timezone }) => {
              <div className="text-white text-[5px] font-sans tracking-widest opacity-80 uppercase">Officially Certified</div>
           </div>
 
-          {/* Date Window */}
-          <div className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[16%] h-[12%] bg-white rounded-[1px] shadow-inner flex items-center justify-center z-10 border border-gold-300/30">
-              <span className="text-black font-sans font-bold text-[9px]">{dateNum}</span>
+          {/* Date Window - Magnified Appearance */}
+          <div className="absolute top-1/2 right-[8%] -translate-y-1/2 w-[16%] h-[12%] bg-white rounded-[2px] shadow-inner flex items-center justify-center z-10 border border-gold-300/30">
+              {/* Scale font up to simulate optical magnification */}
+              <span className="text-black font-sans font-bold text-[12px] tracking-tight">{dateNum}</span>
           </div>
       </div>
 
       {/* Cyclops (Physical Layer above Dial, Fixed position relative to case) */}
-      <div className="absolute top-1/2 right-[18%] -translate-y-1/2 w-[20%] h-[15%] bg-white/5 rounded-[6px] backdrop-blur-[2px] shadow-lg border border-white/20 z-40 pointer-events-none" 
-           style={{ transform: 'translateX(28%) scale(1.1)' }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-[6px]"></div>
+      {/* Moved right slightly to center over the date window properly, removed blur for clarity, added glass gradients */}
+      <div className="absolute top-1/2 right-[19%] -translate-y-1/2 w-[20%] h-[16%] rounded-[6px] shadow-[0_2px_4px_rgba(0,0,0,0.15)] border border-white/10 z-40 pointer-events-none" 
+           style={{ transform: 'translateX(25%)' }}>
+          {/* Clear Glass Gradient (No Blur) */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/5 to-transparent rounded-[6px]"></div>
+          {/* Specular Highlight */}
+          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/10 to-transparent rounded-r-[6px]"></div>
       </div>
 
       {/* HANDS (SVG for Precise Geometry) */}
